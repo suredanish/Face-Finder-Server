@@ -53,6 +53,7 @@ app.post('/home', (req,res)=>{
     .catch((e) => {res.status(400).json("unable to login")})
 })
 app.post('/Register',(req,res)=>{
+    res.status(400).json("user exists")
     const {name, email, password} = req.body;
     db.transaction( trx =>{
 
