@@ -7,12 +7,9 @@ const api=new Clarifai.App({apiKey: '9b7f1f5daf1e48b3b708b959435ee03b'});
 
 const db = require('knex')({
     client: 'pg',
-    connection: {
-      host : '127.0.0.1',
-      port : 5432,
-      user : 'postgres',
-      password : '1234',
-      database : 'smart-brain'
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
     }
   });
 
@@ -53,7 +50,6 @@ app.post('/home', (req,res)=>{
     .catch((e) => {res.status(400).json("unable to login")})
 })
 app.post('/Register',(req,res)=>{
-    res.status(400).json("user exists")
     const {name, email, password} = req.body;
     db.transaction( trx =>{
 
