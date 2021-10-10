@@ -7,9 +7,11 @@ const api=new Clarifai.App({apiKey: '9b7f1f5daf1e48b3b708b959435ee03b'});
 
 const db = require('knex')({
     client: 'pg',
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
+    connection:{
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+        rejectUnauthorized: false
+        }
     }
   });
 
